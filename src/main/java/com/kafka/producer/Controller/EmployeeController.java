@@ -15,7 +15,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
     
     @PostMapping("employee")
-    public EmployeeDTO addEmployee(@RequestBody EmployeeDTO employeeDTO){
+    public String addEmployee(@RequestBody EmployeeDTO employeeDTO){
         return employeeService.addEmployee(employeeDTO);
     }
 }

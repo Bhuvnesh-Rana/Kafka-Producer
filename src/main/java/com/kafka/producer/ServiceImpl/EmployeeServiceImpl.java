@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kafka.producer.DTO.EmployeeDTO;
 import com.kafka.producer.Entity.Employee;
+import com.kafka.producer.Repository.EmployeeRepository;
 import com.kafka.producer.Service.EmployeeService;
 import com.kafka.producer.Utils.KafkaConstants;
 
@@ -18,15 +19,26 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private KafkaTemplate<String,EmployeeDTO> kafkaTemplate;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @Override
-    public EmployeeDTO addEmployee(EmployeeDTO employeeDTO) {
+    public String addEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
-
+        if (employeeRepository.existsByEmployeeId(employee.getEmployeeId())) {
+            System.out.println("Employee alredy present...");
+            return "Employee allready present with Employee Id: "+employee.getEmployeeId();
+        }
+        
+        
+        else{
+        employeeRepository.save(employee);
         List<EmployeeDTO> employeeList =List.of(employeeDTO);
         employeeList.forEach(a -> kafkaTemplate.send(KafkaConstants.TOPIC, a));
-
-        return employeeDTO;
+        return "Employee published "+employeeDTO;
+        }
+        
     }
     
 }
