@@ -27,8 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
         if (employeeRepository.existsByEmployeeId(employee.getEmployeeId())) {
-            System.out.println("Employee alredy present...");
-            return "Employee allready present with Employee Id: "+employee.getEmployeeId();
+            return "Employee already present with Employee Id: "+employee.getEmployeeId();
         }
         
         
