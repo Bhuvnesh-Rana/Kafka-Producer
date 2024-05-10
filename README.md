@@ -9,7 +9,7 @@ Kafka producer read me.
 8. After running both zookeeper and kafka, run the Kafka-Producer and Kafka-Consumer projects.(Both projects are present separately as repositories.)
 9. Run both Kafka-Producer project and Kafka-Consumer project as spring boot projects one by one.
 10. Open postmann app and send valid JSON.
-11. The producer will produce message and theh consumer will consume the message.
+11. The producer will produce message and then the consumer will consume the message.
 
 
 
