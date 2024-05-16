@@ -1,4 +1,4 @@
-Kafka producer read me.
+#Kafka producer read me.
 1. Install kafka.
 2. Check java version. (Kafka requires java version above 8 to run, check kafka documentaion for more information.)
 3. Open kafka folder and open cmd in that folder.
